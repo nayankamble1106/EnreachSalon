@@ -1,0 +1,6 @@
+{
+  "name": "Enreach Unisex Saloon",
+  "description": "Luxury unisex salon website featuring precision cuts, radiant color, signature styling, interactive before-and-after transformations, and instant WhatsApp booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
