@@ -14,8 +14,8 @@ export const BeforeAfterSection: React.FC<BeforeAfterSectionProps> = ({
     title: "Intense Keratin Smoothing & Gloss Treatment",
     category: "Keratin & Shine Transformation",
     description: "Transformed dry, un-styled frizzy hair into mirror-like, silky straight hair with radiant shine and long-lasting frizz control.",
-    before: "/images/Screenshot 2026-10-17 223006.png",
-    after: "/images/Screenshot 2026-10-17 222932.png",
+    before: "/images/file_00000000ddd8821181c9d092861c9cea.png",
+    after: "/images/file_00000000a0f882119dccf1626b0648f1.png",
   };
 
   return (

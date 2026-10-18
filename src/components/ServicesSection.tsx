@@ -13,7 +13,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   onOpenAllServices,
 }) => {
   return (
-    <section className="pt-20 md:pt-24 lg:pt-28" id="services">
+    <section className="pt-10 md:pt-14 lg:pt-16" id="services">
       <div className="w-full max-w-[1320px] mx-auto px-5 sm:px-8 xl:px-10">
         {/* Header & Category Chip */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
@@ -29,14 +29,23 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 <path d="M12 1l2.6 8.4L23 12l-8.4 2.6L12 23l-2.6-8.4L1 12l8.4-2.6z" />
               </svg>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl text-[#2C1E18] tracking-wide m-0">
+            <h2 className="font-display text-4xl sm:text-5xl text-[#1C130E] tracking-wide m-0">
               Signature Treatments
             </h2>
           </div>
 
-          <p className="text-xs sm:text-sm text-[#5E4A41] max-w-sm m-0">
-            Engineered styling, bespoke color alchemy, and restorative scalp therapies.
-          </p>
+          <div className="flex flex-col items-start sm:items-end gap-2.5">
+            <p className="text-xs sm:text-sm text-[#5E4A41] max-w-sm m-0 sm:text-right">
+              Engineered styling, bespoke color alchemy, and restorative scalp therapies.
+            </p>
+            <button
+              onClick={() => onOpenAllServices("Hair Cut")}
+              className="bg-[#1C130E] text-white px-6 py-3 rounded-full font-medium inline-flex items-center gap-2 hover:opacity-90 transition shadow-md text-xs sm:text-[13px] tracking-wider uppercase cursor-pointer group mt-1"
+            >
+              <span>VIEW ALL SERVICES</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </div>
         </div>
 
         {/* Services Grid (Prices and durations removed per instructions, showing Title, Price badge, and '+' button) */}
@@ -61,7 +70,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
                 {/* Gradient Contrast Overlay */}
                 <div
-                  className="absolute inset-0 service-card-overlay -z-10 pointer-events-none"
+                  className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent -z-10 pointer-events-none"
                   aria-hidden="true"
                 />
 

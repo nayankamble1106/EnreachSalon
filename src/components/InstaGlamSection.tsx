@@ -19,14 +19,12 @@ export const InstaGlamSection: React.FC<InstaGlamSectionProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(220px,300px)_minmax(0,1fr)] gap-8 lg:gap-10 items-center">
           {/* Left Column: Title & Social CTA */}
           <div>
-            <div className="flex items-start gap-2">
-              <h2 className="font-display text-[44px] sm:text-[52px] lg:text-[64px] tracking-wide text-[#2C1E18] leading-[0.95]">
-                Insta
-                <br />
-                Glam
+            <div className="flex items-center gap-2 mb-2">
+              <h2 className="font-display text-[38px] sm:text-[46px] lg:text-[54px] tracking-wide text-[#1C130E] leading-none m-0">
+                Instagram
               </h2>
               <svg
-                className="w-3.5 h-3.5 text-[#DE8F98] mt-2 shrink-0"
+                className="w-3.5 h-3.5 text-[#4A1521] shrink-0"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -35,10 +33,8 @@ export const InstaGlamSection: React.FC<InstaGlamSectionProps> = ({
               </svg>
             </div>
 
-            <p className="mt-4 mb-6 text-[15px] sm:text-[16px] leading-relaxed text-[#5E4A41] font-medium">
-              Fresh looks from
-              <br />
-              our studio.
+            <p className="mt-1 mb-5 text-[14px] sm:text-[15px] leading-snug text-[#5E4A41] font-medium">
+              Fresh looks from our studio.
             </p>
 
             <a

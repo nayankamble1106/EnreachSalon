@@ -245,12 +245,19 @@ export const AllServicesModal: React.FC<AllServicesModalProps> = ({
                             }`}
                           >
                             <div className="flex flex-col gap-1 min-w-0 pr-2">
-                              <h4 className="font-bold text-sm sm:text-base text-[#2C1E18] tracking-tight m-0 truncate">
-                                {item.name}
-                              </h4>
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <h4 className="font-bold text-sm sm:text-base text-[#1C130E] tracking-tight m-0">
+                                  {item.name}
+                                </h4>
+                                {item.price && (
+                                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#F7F4EF] border border-[#1C130E]/15 text-xs font-bold text-[#1C130E]">
+                                    {item.price}
+                                  </span>
+                                )}
+                              </div>
 
                               {item.subText && (
-                                <span className="text-xs text-gray-500 font-medium truncate">
+                                <span className="text-xs text-gray-500 font-medium">
                                   {item.subText}
                                 </span>
                               )}
@@ -319,7 +326,7 @@ export const AllServicesModal: React.FC<AllServicesModalProps> = ({
               <ul className="text-xs space-y-1 text-gray-700 font-medium max-h-28 overflow-y-auto">
                 {cart.map((s) => (
                   <li key={s.name} className="flex items-center justify-between">
-                    <span>• {s.name}</span>
+                    <span>• {s.name}{s.price ? ` (${s.price})` : ""}</span>
                     <button
                       onClick={() => handleRemoveFromCart(s.name)}
                       className="text-red-500 hover:underline text-[10px]"

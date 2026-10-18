@@ -39,7 +39,7 @@ export const Hero: React.FC<HeroProps> = ({ heroImage, onOpenServicesModal }) =>
             Cut. Color. Confidence.
           </div>
 
-          {/* CTA Button -> Opens Full Services Modal per instruction */}
+          {/* CTA Button -> Opens Full Services Modal */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <button
               onClick={onOpenServicesModal}
