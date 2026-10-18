@@ -338,21 +338,7 @@ export const CustomizerModal: React.FC<CustomizerModalProps> = ({
                       />
                     </div>
 
-                    <div className="sm:col-span-2">
-                      <label className="block text-[11px] font-bold uppercase text-[#5E4A41] mb-1">
-                        Description
-                      </label>
-                      <input
-                        type="text"
-                        value={svc.desc}
-                        onChange={(e) => {
-                          const updated = [...services];
-                          updated[idx] = { ...updated[idx], desc: e.target.value };
-                          setServices(updated);
-                        }}
-                        className="w-full px-3 py-2 rounded-lg border border-[#2C1E18]/20 text-sm focus:outline-none focus:ring-1 focus:ring-[#DE8F98]"
-                      />
-                    </div>
+
 
                     <div className="sm:col-span-2">
                       <label className="block text-[11px] font-bold uppercase text-[#5E4A41] mb-1">

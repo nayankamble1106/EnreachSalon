@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { Sparkles, Menu, X, Settings2 } from "lucide-react";
-import { SalonInfo, buildWhatsAppLink } from "../data/salonData";
+import { Sparkles, Menu, X } from "lucide-react";
+import { SalonInfo } from "../data/salonData";
 
 interface NavbarProps {
   salonInfo: SalonInfo;
-  onOpenCustomizer: () => void;
+  onOpenServicesModal: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ salonInfo, onOpenCustomizer }) => {
+export const Navbar: React.FC<NavbarProps> = ({ salonInfo, onOpenServicesModal }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const waLink = buildWhatsAppLink(
-    salonInfo.whatsappNumber,
-    salonInfo.defaultWhatsAppMessage
-  );
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -81,28 +76,16 @@ export const Navbar: React.FC<NavbarProps> = ({ salonInfo, onOpenCustomizer }) =
           </a>
         </nav>
 
-        {/* Action Buttons */}
+        {/* Action Buttons (Removed unwanted filter/settings icon as requested) */}
         <div className="flex items-center gap-3">
-          {/* Quick Customizer Toggle Button */}
+          {/* Book Button -> Opens Services Modal directly */}
           <button
-            onClick={onOpenCustomizer}
-            title="Update salon services, images & details"
-            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#5E4A41] hover:text-[#2C1E18] bg-[#F6EFE9] border border-[#2C1E18]/20 rounded-full hover:border-[#2C1E18]/50 hover:bg-white/60 transition-all shadow-sm"
-          >
-            <Settings2 className="w-3.5 h-3.5 text-[#DE8F98]" />
-            <span className="hidden sm:inline">Customize</span>
-          </button>
-
-          {/* Book Button */}
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={onOpenServicesModal}
             className="pill pill-pink hidden md:inline-flex shadow-sm hover:shadow-md"
           >
             <span>Book your look</span>
             <Sparkles className="w-3.5 h-3.5 text-[#DE8F98]" />
-          </a>
+          </button>
 
           {/* Mobile Hamburger Toggle */}
           <button
@@ -154,14 +137,15 @@ export const Navbar: React.FC<NavbarProps> = ({ salonInfo, onOpenCustomizer }) =
           >
             About & Visit
           </a>
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenServicesModal();
+            }}
             className="pill pill-pink w-full mt-3 text-center justify-center"
           >
             Book your look on WhatsApp
-          </a>
+          </button>
         </div>
       )}
     </header>

@@ -1,18 +1,14 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-import { SalonInfo, buildWhatsAppLink } from "../data/salonData";
+import { SalonInfo } from "../data/salonData";
 
 interface HeroProps {
   salonInfo: SalonInfo;
   heroImage: string;
+  onOpenServicesModal: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ salonInfo, heroImage }) => {
-  const waLink = buildWhatsAppLink(
-    salonInfo.whatsappNumber,
-    salonInfo.defaultWhatsAppMessage
-  );
-
+export const Hero: React.FC<HeroProps> = ({ heroImage, onOpenServicesModal }) => {
   return (
     <section className="relative overflow-hidden pt-4 pb-14 md:pb-20 lg:pb-0" id="home">
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] min-h-[500px] lg:min-h-[580px] xl:min-h-[640px] items-stretch gap-8 lg:gap-0">
@@ -43,17 +39,15 @@ export const Hero: React.FC<HeroProps> = ({ salonInfo, heroImage }) => {
             Cut. Color. Confidence.
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button -> Opens Full Services Modal per instruction */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <a
-              href={waLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="pill pill-dark inline-flex items-center justify-center gap-3 text-sm py-4 px-8 group"
+            <button
+              onClick={onOpenServicesModal}
+              className="pill pill-dark inline-flex items-center justify-center gap-3 text-sm py-4 px-8 group cursor-pointer"
             >
               <span>Book your look</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
+            </button>
 
             <a
               href="#services"

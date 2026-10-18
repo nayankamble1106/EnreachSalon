@@ -27,7 +27,7 @@ export const Footer: React.FC<FooterProps> = ({ salonInfo }) => {
               </span>
             </div>
             <p className="text-sm leading-relaxed text-[#F6EFE9]/80 max-w-[280px]">
-              Cut. Color. Confidence. Crafted hair for every era, personalized for everyone.
+              Beauty • Style • Confidence | Your beauty. Our passion.
             </p>
           </div>
 
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ salonInfo }) => {
             </ul>
           </div>
 
-          {/* Col 4: Social Channels */}
+          {/* Col 4: Official Social Channels */}
           <div>
             <h4 className="text-[11.5px] font-extrabold tracking-[0.18em] uppercase text-[#E8B4B8] mb-4">
               Follow Us

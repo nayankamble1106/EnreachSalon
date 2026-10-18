@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { ServicesSection } from "./components/ServicesSection";
+import { AllServicesModal } from "./components/AllServicesModal";
 import { BeforeAfterSection } from "./components/BeforeAfterSection";
 import { InstaGlamSection } from "./components/InstaGlamSection";
 import { LookPreviewModal } from "./components/LookPreviewModal";
@@ -36,6 +37,10 @@ export default function App() {
   // Modal look preview state (-1 means closed)
   const [activeGlamIdx, setActiveGlamIdx] = useState<number>(-1);
 
+  // Full service menu modal state & category filter
+  const [isAllServicesOpen, setIsAllServicesOpen] = useState(false);
+  const [selectedServiceCategory, setSelectedServiceCategory] = useState("Hair Cut");
+
   // Customizer modal state
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
 
@@ -53,34 +58,41 @@ export default function App() {
     );
   };
 
+  const handleOpenAllServices = (category = "Hair Cut") => {
+    setSelectedServiceCategory(category);
+    setIsAllServicesOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-[#F6EFE9] text-[#2C1E18] font-sans-body relative overflow-x-clip selection:bg-[#E8B4B8] selection:text-[#2C1E18]">
       {/* Top Hero Section Container with subtle luxury gradient */}
       <div className="bg-gradient-to-b from-[#EBD8CF] via-[#F2E4DC] to-[#F6EFE9]">
         <div className="w-full max-w-[1320px] mx-auto px-5 sm:px-8 xl:px-10">
-          {/* Header Navigation */}
+          {/* Header Navigation (Removed unwanted settings/filter icon) */}
           <Navbar
             salonInfo={salonInfo}
-            onOpenCustomizer={() => setIsCustomizerOpen(true)}
+            onOpenServicesModal={() => handleOpenAllServices("Hair Cut")}
           />
 
           {/* Hero Section */}
           <Hero
             salonInfo={salonInfo}
             heroImage={heroImage}
+            onOpenServicesModal={() => handleOpenAllServices("Hair Cut")}
           />
         </div>
       </div>
 
       {/* Main Content Sections */}
       <main>
-        {/* Services Section */}
+        {/* Services Section with Image Positioning and "View All Services" Button */}
         <ServicesSection
           services={services}
           whatsappNumber={salonInfo.whatsappNumber}
+          onOpenAllServices={handleOpenAllServices}
         />
 
-        {/* Before & After Interactive Transformations Section */}
+        {/* Before & After Static 2-Column Comparison Grid */}
         <BeforeAfterSection
           transformations={transformations}
         />
@@ -93,11 +105,19 @@ export default function App() {
         />
       </main>
 
-      {/* Footer Section */}
+      {/* Footer Section (Displaying 7020678366 | 8806767186) */}
       <Footer salonInfo={salonInfo} />
 
       {/* Pinned Floating WhatsApp Quick Booking Dock */}
       <FloatingWhatsAppDock salonInfo={salonInfo} />
+
+      {/* Full Services Menu Modal & Appointment Booking Checkout Form */}
+      <AllServicesModal
+        isOpen={isAllServicesOpen}
+        onClose={() => setIsAllServicesOpen(false)}
+        whatsappNumber={salonInfo.whatsappNumber}
+        initialCategoryFilter={selectedServiceCategory}
+      />
 
       {/* Glassmorphic Look Preview Dialog */}
       {activeLook && (

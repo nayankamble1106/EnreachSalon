@@ -1,19 +1,31 @@
 /**
  * Enreach Unisex Saloon Data Model
- * 
- * Bound with custom high-resolution salon images:
- * - Hero Banner: Soft champagne wide landscape model photo
- * - Services: Cut (bob side profile), Color (wavy blonde/highlighted), Style (dark wavy brunette)
- * - Before & After: Straight brown hair (Before) vs Styled wavy bouncy hair (After)
+ * Updated with official contact numbers (7020678366 | 8806767186) and price/duration removed per instructions.
  */
+
+export interface ServiceItem {
+  id?: string;
+  name: string;
+  price?: string;
+  numericPrice?: number;
+  duration?: string;
+  subText?: string;
+  category?: string;
+}
+
+export interface ServiceMenuCategory {
+  category: string;
+  items: ServiceItem[];
+}
 
 export interface SalonService {
   id: string;
   title: string;
-  desc: string;
   img: string;
-  price?: string;
-  tag?: string;
+  price: string;
+  tag: string;
+  objectPosition: string;
+  categoryFilter: string;
 }
 
 export interface TransformationLook {
@@ -40,6 +52,7 @@ export interface SalonInfo {
   address: string;
   city: string;
   phone: string;
+  secondaryPhone: string;
   displayPhone: string;
   email: string;
   hours: string;
@@ -52,135 +65,212 @@ export interface SalonInfo {
 export const initialSalonInfo: SalonInfo = {
   name: "Enreach",
   tagline: "Unisex Saloon",
-  address: "Civil Lines, Near Gandhi Chowk",
+  address: "Jatpura Gate, Near Gulwade Hospital, Bazar Ward",
   city: "Chandrapur, Maharashtra",
-  phone: "+919876543210",
-  displayPhone: "+91 98765 43210",
+  phone: "+917020678366",
+  secondaryPhone: "+918806767186",
+  displayPhone: "+91 70206 78366 | +91 88067 67186",
   email: "contact@enreachsaloon.com",
-  hours: "Monday – Sunday: 10:00 AM – 9:00 PM",
-  whatsappNumber: "919876543210",
-  defaultWhatsAppMessage: "Hi Enreach, I would like to book an appointment for a new look!",
-  instagramUrl: "https://instagram.com",
-  facebookUrl: "https://facebook.com",
+  hours: "Monday – Sunday: 9:30 AM – 9:00 PM",
+  whatsappNumber: "917020678366",
+  defaultWhatsAppMessage: "Hi Enreach Salon, I want to book an appointment!",
+  instagramUrl: "https://www.instagram.com/en_reachh_unisex_saloon?cplk=bDFwMmczOWJ1MW1h",
+  facebookUrl: "https://www.facebook.com/share/17vNpzKWLR/",
 };
 
-/**
- * 1. HERO SECTION BANNER IMAGE
- * Wide/landscape model photo with soft champagne background
- */
 export const heroMediaImage = "/images/hero-banner.jpeg";
 
-/**
- * 2. OUR SERVICES CARDS
- * - CUT: Short bob hairstyle side-profile photo
- * - COLOR: Wavy blonde / highlighted hair photo
- * - STYLE: Dark wavy brunette hair portrait photo
- */
 export const initialServices: SalonService[] = [
   {
     id: "cut",
     title: "Cut",
-    desc: "Precision cuts and tailored bobs that define your features.",
-    price: "From ₹350",
-    tag: "Signature Cuts",
-    img: "/images/service-cut.jpeg",
+    price: "",
+    tag: "Hair Cut",
+    img: "/images/Screenshot 2026-10-17 220758.png",
+    objectPosition: "center top",
+    categoryFilter: "Hair Cut",
   },
   {
     id: "color",
     title: "Color",
-    desc: "Rich, radiant dimensional color and sun-kissed balayage.",
-    price: "From ₹1,499",
-    tag: "Balayage & Global",
-    img: "/images/service-color.jpeg",
+    price: "",
+    tag: "Colour",
+    img: "/images/Screenshot 2026-10-17 220743.png",
+    objectPosition: "center 30%",
+    categoryFilter: "Colour",
   },
   {
-    id: "style",
-    title: "Style",
-    desc: "Bouncy blowouts, glossy waves & effortless red-carpet styling.",
-    price: "From ₹450",
-    tag: "Volumizing & Waves",
-    img: "/images/service-style.jpeg",
+    id: "grooming",
+    title: "Grooming",
+    price: "",
+    tag: "Treatments",
+    img: "/images/Screenshot 2026-10-17 220729.png",
+    objectPosition: "center center",
+    categoryFilter: "Treatments",
   },
 ];
 
-/**
- * 3. BEFORE & AFTER TRANSFORMATION SLIDER
- * - BEFORE: Straight brown hair front-facing portrait
- * - AFTER: Styled wavy bouncy hair front-facing portrait
- */
 export const initialTransformations: TransformationLook[] = [
   {
-    id: "look-1",
-    title: "Signature Balayage & Bouncy Waves",
-    category: "Color & Styling Transformation",
-    description: "Transformed flat, straight brown hair into luminous dimensional honey balayage with voluminous, bouncy waves.",
-    before: "/images/before-transformation.jpeg",
-    after: "/images/after-transformation.jpeg",
+    id: "keratin-smoothing",
+    title: "Intense Keratin Smoothing & Gloss Treatment",
+    category: "Keratin & Shine Transformation",
+    description: "Transformed dry, un-styled frizzy hair into mirror-like, silky straight hair with radiant shine and long-lasting frizz control.",
+    before: "/images/Screenshot 2026-10-17 223006.png",
+    after: "/images/Screenshot 2026-10-17 222932.png",
+  },
+];
+
+export const initialGlamLooks: GlamLook[] = [
+  {
+    id: "silk-leopard-back",
+    title: "Silk Straight",
+    pill: "Trending",
+    tag: "Glass Hair Finish",
+    note: "Ultra-long straight hair with pin-straight silk alignment and reflective shine.",
+    img: "/images/41b8e193-ec7a-4974-a54c-f58859bfea72.jpg",
   },
   {
-    id: "look-2",
-    title: "Dimensional Brunette to Honey Glow",
-    category: "Balayage Transformation",
-    description: "Lifted natural dark roots with face-framing lightened ribbons, root melt, and a blowout finish.",
-    before: "/images/service-style.jpeg",
-    after: "/images/service-color.jpeg",
+    id: "leopard-front-smile",
+    title: "Signature Smooth",
+    pill: "Client Favorite",
+    tag: "Smooth & Polish",
+    note: "Lightweight, silky smooth front styling with soft face framing and zero flyaways.",
+    img: "/images/32cc2526-035f-4798-8fa7-90fdf4702000.jpg",
   },
   {
-    id: "look-3",
-    title: "Textured Face-Framing Bob Cut",
-    category: "Precision Cut & Texture",
-    description: "Tailored side-profile bob cut with soft textured waves, enhancing jawline definition.",
-    before: "/images/before-transformation.jpeg",
-    after: "/images/service-cut.jpeg",
+    id: "layer-cut-white",
+    title: "Feather Layers",
+    pill: "Popular",
+    tag: "Layer Cut & Volume",
+    note: "Bouncy multi-tiered layers creating effortless body and movement around the collarbones.",
+    img: "/images/aa132ae6-83c4-48a9-9bfb-bd0c512bc980.jpg",
+  },
+  {
+    id: "blue-sweater-waves",
+    title: "Soft Velvet Waves",
+    pill: "New Look",
+    tag: "Dimensional Wave",
+    note: "Sweeping curtain bangs blended into soft cascading waves with subtle warm highlights.",
+    img: "/images/28f82dd7-cd63-4552-80a6-5c297d503818.jpg",
+  },
+  {
+    id: "salon-straight-back",
+    title: "Keratin Mirror Finish",
+    pill: "Transformation",
+    tag: "Keratin Treatment",
+    note: "Deep nourishing keratin salon treatment delivering flawless pin-straight smoothness.",
+    img: "/images/63b791ca-9218-4fbc-b46f-8f08e275d8de.jpg",
   },
 ];
 
 /**
- * INSTA GLAM STUDIO GALLERY
- * Showcasing the custom salon photography
+ * COMPLETE SALON SERVICE MENU TARIFF (Prices and Durations removed per instructions)
  */
-export const initialGlamLooks: GlamLook[] = [
+export const fullServicesCatalog: ServiceMenuCategory[] = [
   {
-    id: "honey-balayage",
-    title: "Honey Balayage",
-    pill: "Trending",
-    tag: "Trending Color",
-    note: "Sun-kissed, multi-tonal golden ribbons with soft movement and long-lasting shine.",
-    img: "/images/service-color.jpeg",
+    category: "Hair Cut",
+    items: [
+      { name: "Special Care Haircut" },
+      { name: "Haircut", subText: "Graduate · Senior · Expert" },
+      { name: "Creative Hair Cut", subText: "Senior · Master Stylist" },
+      { name: "Haircut Boy" },
+      { name: "Girls Haircut" },
+      { name: "Beard Trimming" },
+      { name: "Moustache Styling" },
+      { name: "Back / Front Hair Trimming" },
+    ],
   },
   {
-    id: "chic-bob",
-    title: "Textured Bob",
-    pill: "Signature",
-    tag: "Precision Cut",
-    note: "A sharp yet softly textured wavy bob with effortless side-profile volume.",
-    img: "/images/service-cut.jpeg",
+    category: "Hair Wash",
+    items: [
+      { name: "Hair Wash", subText: "Classic · Advanced · Luxury" },
+      { name: "Keratin Wash" },
+      { name: "Blow Dry" },
+      { name: "Hair Styling" },
+      { name: "Head Massage" },
+    ],
   },
   {
-    id: "velvet-brunette",
-    title: "Velvet Brunette",
-    pill: "New look",
-    tag: "Color & Blowout",
-    note: "Deep espresso and rich mocha undertones with cascading silky waves.",
-    img: "/images/service-style.jpeg",
+    category: "Colour",
+    items: [
+      { name: "Touch up" },
+      { name: "Touch up (Ammonia Free)" },
+      { name: "Beard Colouring" },
+      { name: "Global Colouring", subText: "Upto Neck · Shoulder · Waist" },
+      { name: "Hair Strip Colour" },
+      { name: "Balayage Colour" },
+      { name: "Weaving Colour" },
+      { name: "Crazy Colour" },
+    ],
   },
   {
-    id: "bouncy-blowout",
-    title: "Bouncy Waves",
-    pill: "Client Favorite",
-    tag: "Style & Glow",
-    note: "Lived-in, glamorous face-framing blowout designed for all-day volume.",
-    img: "/images/after-transformation.jpeg",
+    category: "Treatments",
+    items: [
+      { name: "Keratin Treatment", subText: "Neck · Shoulder · Waist" },
+      { name: "Butore Treatment", subText: "Neck · Shoulder · Waist" },
+      { name: "Floraactive Treatment", subText: "Neck · Shoulder · Waist" },
+      { name: "Texture (Smoothing / Rebonding)", subText: "Below Neck · Shoulder · Waist" },
+      { name: "Ironing / Tongs / Iron Curls" },
+      { name: "Hair Spa (Regular)" },
+      { name: "Keratin Spa" },
+      { name: "Anti Dandruff Treatment" },
+      { name: "Anti Hairfall Treatment" },
+      { name: "Nanoplastia" },
+    ],
   },
   {
-    id: "champagne-glam",
-    title: "Champagne Glow",
-    pill: "Editorial",
-    tag: "Signature Look",
-    note: "Effortless, tousled brunette with soft luminous highlights and natural texture.",
-    img: "/images/hero-banner.jpeg",
+    category: "Waxing / Facials",
+    items: [
+      { name: "Liposoluble Wax", subText: "Full Arms · Half Arms · Full Legs · Underarms" },
+      { name: "Roll On Wax", subText: "Single Cartridge · Two Cartridges" },
+      { name: "Sugar Wax", subText: "Full Arms · Half Arms · Full Legs · Underarms" },
+      { name: "Express Cleanup", subText: "Age Revival · Anti-Aging Hydrating · Anti-Pigmentation" },
+      { name: "Threading (Eyebrow / Jawline / Chin / Forehead)" },
+      { name: "Fruit Facial / O3 Whitening" },
+      { name: "Skin Polishing (Body Scrub / Gold / Luxury)" },
+      { name: "Hydra Facial" },
+      { name: "Bridal Facial (O3 Bridal / O2C2 / Snowy / BB Glow)" },
+    ],
+  },
+  {
+    category: "Makeup",
+    items: [
+      { name: "Manicure / Pedicure (Regular / Crystal / Luxury)" },
+      { name: "Touch up Makeup" },
+      { name: "Saree Draping" },
+      { name: "Party Makeup" },
+      { name: "Bridal Makeup / HD Makeup" },
+    ],
   },
 ];
+
+export interface AppointmentDetails {
+  name: string;
+  phone: string;
+  date: string;
+  time: string;
+}
+
+export function buildWhatsAppAppointmentMessage(
+  phone: string,
+  cart: ServiceItem[],
+  details: AppointmentDetails
+): string {
+  const cleanPhone = phone.replace(/[^0-9]/g, "");
+  let text = `Hi Enreach Unisex Saloon! 👋\n\n`;
+  text += `I would like to book an appointment. Here are my details:\n\n`;
+  text += `👤 Name: ${details.name}\n`;
+  text += `📞 Phone: ${details.phone}\n`;
+  text += `📅 Date: ${details.date}\n`;
+  text += `⏰ Time: ${details.time}\n\n`;
+  text += `✂️ Selected Services:\n`;
+  cart.forEach((item, idx) => {
+    text += `- ${item.name}${item.subText ? ` (${item.subText})` : ""}\n`;
+  });
+  text += `\nPlease confirm my booking slot!`;
+  return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+}
 
 export function buildWhatsAppLink(phone: string, message: string): string {
   const cleanPhone = phone.replace(/[^0-9]/g, "");
